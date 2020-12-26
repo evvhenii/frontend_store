@@ -11,6 +11,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PetsComponent } from './components/pets/pets.component';
 import { PetCreationComponent } from './components/pet-creation/pet-creation.component';
 import { MyPetsComponent } from './components/my-pets/my-pets.component';
+import { RequestedPetsComponent } from './components/requested-pets/requested-pets.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MyPetsComponent } from './components/my-pets/my-pets.component';
     PetsComponent,
     PetCreationComponent,
     MyPetsComponent,
+    RequestedPetsComponent,
   ],
   imports: [
     BrowserModule,

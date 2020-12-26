@@ -27,6 +27,10 @@ export class PetService {
   	return this.http.get<Pet[]>(apiPath + "my_pets");
   }
 
+  public getRequestedPets(): Observable<Pet[]>{
+  	return this.http.get<Pet[]>(apiPath + "requested_pets");
+  }
+
   public create(pet): Observable<PetCreation> {
     console.log(pet);
     return this.http.post<PetCreation>(this.API, pet, httpOptions);
