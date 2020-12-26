@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
                             gender: "s", 
                             password: "", 
                             imageUrl: "",
-                            birthDate: new Date() };
+                            birthDate: null };
   API: string = apiPath;
   isSuccessful = false;
   isSignUpFailed = false;

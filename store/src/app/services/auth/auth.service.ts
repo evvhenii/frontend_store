@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UserRegistration } from '../../../models/user-registration';
 import { apiPath } from '../../../../globals';
 
-const AUTH_API = apiPath;
+const API = apiPath;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,10 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private http: HttpClient) { }
 
   login(credentials): Observable<any> {
-    return this.http.post(AUTH_API + 'auth/', {
+    return this.http.post(API + 'auth/', {
       email: credentials.email,
       password: credentials.password
     }, httpOptions);
@@ -26,6 +27,6 @@ export class AuthService {
 
   register(user): Observable<UserRegistration> {
     console.log(user);
-    return this.http.post<UserRegistration>(AUTH_API + 'register/', user, httpOptions);
+    return this.http.post<UserRegistration>(API + 'register/', user, httpOptions);
   }
 }

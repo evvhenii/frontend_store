@@ -8,6 +8,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './components/app/app.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { PetsComponent } from './components/pets/pets.component';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -16,6 +17,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     RegistrationComponent,
     LoginComponent,
     AppComponent,
+    PetsComponent,
   ],
   imports: [
     BrowserModule,

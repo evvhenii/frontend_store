@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserRegistration } from '../../../models/user-registration';
+import { Observable, of } from 'rxjs';
+import { Pet } from '../../../models/pet';
 import { apiPath } from '../../../../globals';
-
-
-const API = apiPath;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +11,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class PetService {
+  
+  API: string = apiPath + 'pets';
 
   constructor(private http: HttpClient) { }
 
-  /*register(user: UserRegistration) {
-    return this.http.post(`/users/register`, user);
-  }*/
+  public getPets(): Observable<Pet[]>{
+  	return this.http.get<Pet[]>(this.API+"/findAll");
+  }
 }
