@@ -15,10 +15,16 @@
     </ul>
   </div>
 
-  <div *ngIf="isLoggedIn" (click)="logOut()" class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  <div *ngIf="isLoggedIn" class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-       Logout
+        <a class="nav-link" routerLink="/add_pet">Add pet</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/my_pets">My pets</a>
+      </li>
+      <li (click)="logOut()" class="nav-link">
+        <a>Logout</a>
       </li>
     </ul>
   </div>

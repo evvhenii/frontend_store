@@ -1,0 +1,124 @@
+<p>pet-creation works!</p>
+<div class="col-md-12">
+  <div class="card card-container">
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="petCreation.name"
+          required
+          minlength="3"
+          maxlength="20"
+          #name="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Name is required</div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 3 characters
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select 
+          class="form-control"
+          name="category"
+          [(ngModel)]="petCreation.category"
+          required
+          #gender="ngModel">
+          <option value="dog">Dog
+          <option value="cat">Cat
+          <option value="-">Something else
+        </select>
+        <div class="alert-danger" *ngIf="f.submitted && gender.invalid">
+          Please choose!
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          [(ngModel)]="petCreation.description"
+          required
+          minlength="3"
+          maxlength="200"
+          #description="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && description.invalid">
+          <div *ngIf="description.errors.required">Description is required</div>
+          <div *ngIf="description.errors.minlength">
+            Description must be at least 3 characters
+          </div>
+          <div *ngIf="description.errors.maxlength">
+            Description must be at most 200 characters
+          </div>
+        </div>
+      </div>
+
+     
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select 
+          class="form-control"
+          name="gender"
+          [(ngModel)]="petCreation.gender"
+          required
+          #gender="ngModel">
+          <option value="h">He
+          <option value="s">She
+        </select>
+        <div class="alert-danger" *ngIf="f.submitted && gender.invalid">
+          Please choose!
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="imageUrl">ImageUrl</label>
+        <input
+          type="text"
+          class="form-control"
+          name="imageUrl"
+          [(ngModel)]="petCreation.imageUrl"
+          required
+          minlength="3"
+          maxlength="200"
+          #imageUrl="ngModel"
+        />
+      </div>
+
+      
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your pet was successfully created!
+    </div>
+  </div>
+</div>
+

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  errorMessage = '';	
   //roles: string[] = [];
 
   constructor(private authService: AuthService, 
@@ -32,15 +32,16 @@ export class LoginComponent implements OnInit {
       data => {
       	console.log(data.token);
       	console.log(data);
-        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         //this.roles = this.tokenStorage.getUser().roles;
-        //this.reloadPage();
-        //this.router.navigate(['/pets']);
-        this.reloadPage();
+
+
+        this.router.navigate(['/pets'])
+                   .then(() => (this.reloadPage()));
       },
       err => {
         this.errorMessage = err.error.message;

@@ -9,8 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './components/app/app.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { PetsComponent } from './components/pets/pets.component';
-
-//import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { PetCreationComponent } from './components/pet-creation/pet-creation.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +17,7 @@ import { PetsComponent } from './components/pets/pets.component';
     LoginComponent,
     AppComponent,
     PetsComponent,
+    PetCreationComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +26,6 @@ import { PetsComponent } from './components/pets/pets.component';
     HttpClientModule
   ],
   providers: [authInterceptorProviders],
-  //providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

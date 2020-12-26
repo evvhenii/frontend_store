@@ -7,6 +7,8 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
+  //private currentUserSubject: BehaviorSubject<User>;
+  //public currentUser: Observable<User>;
 
   constructor() { }
 
@@ -15,11 +17,13 @@ export class TokenStorageService {
   }
 
   public saveToken(token: string): void {
+    console.log("save token " + token);
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string {
+    console.log("get token " + sessionStorage.getItem(TOKEN_KEY));
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
@@ -28,7 +32,15 @@ export class TokenStorageService {
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): any {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+  //public getUser(): any {
+  //  return JSON.parse(sessionStorage.getItem(USER_KEY));
+  //}
+
+  isLoggedIn() {
+    if (this.getToken() == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
