@@ -1,10 +1,7 @@
-export class Pet {
+export class PetSummary {
 	petId: number;
     name: string;
     category: string;
-    description: string;
     imageUrl: string;
     gender: string;
-    daysAfterAdding: number;
-    userId: number;
 }

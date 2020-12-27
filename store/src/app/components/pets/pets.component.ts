@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../../services/pet/pet.service';
-import { Pet } from '../../../models/pet';
+import { PetSummary } from '../../../models/pet-summary';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Pet } from '../../../models/pet';
 })
 export class PetsComponent implements OnInit {
   
-  pets: Pet[];
+  pets: PetSummary[];
 
   constructor(private petService: PetService) { }
   
@@ -22,5 +22,4 @@ export class PetsComponent implements OnInit {
     this.petService.getPets()
     .subscribe(pets => this.pets = pets);
   }
-
 }

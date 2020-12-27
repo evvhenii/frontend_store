@@ -1,0 +1,13 @@
+<p>pet-profile works!</p>
+pet name {{pet.name}}  value of 
+user id {{userId}}
+pet creator id {{pet.userId}}
+<button *ngIf="pet.userId == userId; else requestBlock" class="btn btn-danger btn-block alert alert-danger">
+  Delete
+</button>
+
+<ng-template  #requestBlock>
+  <button class="btn btn-success btn-block alert alert-success">
+  	Request
+  </button>
+</ng-template>

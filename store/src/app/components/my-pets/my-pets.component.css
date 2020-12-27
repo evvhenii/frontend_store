@@ -1,0 +1,9 @@
+.block{
+	display: inline-block;
+	background-color: #FFFAFA;
+	height: 150px;
+	margin: 10px auto;
+	padding: 10px;
+	width: 30%;
+	min-width: 320px;
+}
