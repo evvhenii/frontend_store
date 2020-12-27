@@ -13,6 +13,7 @@ import { PetCreationComponent } from './components/pet-creation/pet-creation.com
 import { MyPetsComponent } from './components/my-pets/my-pets.component';
 import { RequestedPetsComponent } from './components/requested-pets/requested-pets.component';
 import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
+import { RequestCreationComponent } from './components/request-creation/request-creation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PetProfileComponent } from './components/pet-profile/pet-profile.compon
     MyPetsComponent,
     RequestedPetsComponent,
     PetProfileComponent,
+    RequestCreationComponent,
   ],
   imports: [
     BrowserModule,

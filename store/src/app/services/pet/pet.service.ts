@@ -28,6 +28,10 @@ export class PetService {
   	return this.http.get<Pet[]>(apiPath + "my_pets");
   }
 
+  public deletePet(petId: number){
+  	return this.http.delete(this.API + '/' + petId);
+  }
+
   public getPetById(petId: number): Observable<Pet>{
   	return this.http.get<Pet>(this.API + '/' + petId);
   }

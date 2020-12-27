@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
 import {Subscription} from 'rxjs';
 
 import { Pet } from '../../../models/pet';
@@ -29,13 +30,27 @@ export class PetProfileComponent implements OnInit {
 
   constructor(private petService: PetService,
   	          private tokenStorageService: TokenStorageService,
-  	          private activateRoute: ActivatedRoute) { 
+  	          private activateRoute: ActivatedRoute,
+  	          private router: Router) { 
     this.subscription = activateRoute.params.subscribe(params=>this.petId=params['petId'])
   }
   
   ngOnInit(): void {
   	this.getPetById(this.petId);
   	this.userId = this.tokenStorageService.getUserIdFromToken();
+  }
+
+  public deletePet():void{
+  	console.log('hello');
+    this.petService.deletePet(this.petId).subscribe(() => this.redirectToMyPets());
+  }
+
+  redirectToCreateRequest(): void{
+    this.router.navigate(['/create_request']);
+  }
+
+  redirectToMyPets(): void{
+  	this.router.navigate(['/my_pets']);
   }
 
   getPetById(petId: number): void {
