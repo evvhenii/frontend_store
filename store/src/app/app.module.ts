@@ -14,6 +14,7 @@ import { MyPetsComponent } from './components/my-pets/my-pets.component';
 import { RequestedPetsComponent } from './components/requested-pets/requested-pets.component';
 import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
 import { RequestCreationComponent } from './components/request-creation/request-creation.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RequestCreationComponent } from './components/request-creation/request-
     RequestedPetsComponent,
     PetProfileComponent,
     RequestCreationComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,
