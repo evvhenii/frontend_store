@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { PetService } from '../../services/pet/pet.service';
 import { RequestService } from '../../services/request/request.service';
 import { PetSummary } from '../../../models/pet-summary';
-//import { PetWithRequests } from '../../../models/pet-with-requests';
-
 import { InputRequest } from '../../../models/input-request';
+
+//TODO Переглянути механізм відображення і завантаження, бо  ангулярі має бути щось що допоможе це зробити легше
+
 
 @Component({
   selector: 'app-my-pets',
@@ -15,7 +16,6 @@ import { InputRequest } from '../../../models/input-request';
 })
 export class MyPetsComponent implements OnInit {
 
-  isDataLoaded: boolean = false;
   pets: PetSummary[];
   requests = [];//: InputRequest[];
   petIndexes = [];
@@ -41,7 +41,6 @@ export class MyPetsComponent implements OnInit {
     for(let i in this.petIndexes){
       console.log(i);
     }
-    this.isDataLoaded = true;
   }
  
   /*loadRequests(petId: number): InputRequest[] {

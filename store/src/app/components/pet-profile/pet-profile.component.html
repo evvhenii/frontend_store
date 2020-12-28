@@ -2,12 +2,16 @@
 pet name {{pet.name}}  value of 
 user id {{userId}}
 pet creator id {{pet.userId}}
-<button *ngIf="pet.userId == userId; else requestBlock" class="btn btn-danger btn-block alert alert-danger" (click)="deletePet()">
-  Delete
-</button>
 
-<ng-template  #requestBlock>
-  <button (click)="redirectToCreateRequest()" class="btn btn-success btn-block alert alert-success">
-  	Request
-  </button>
-</ng-template>
+<div *ngIf="isDataLoaded">
+	helloo
+	<button *ngIf="pet.userId == userId; else requestBlock" class="btn btn-danger btn-block alert alert-danger" (click)="deletePet()">
+  		Delete
+	</button>
+	<ng-template #requestBlock >
+  		<button (click)="redirectToCreateRequest()" class="btn btn-success btn-block alert alert-success">
+  			Request
+  		</button>
+  	</ng-template>
+
+</div>

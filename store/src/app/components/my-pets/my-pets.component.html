@@ -1,5 +1,5 @@
 <h1>My pets:</h1>
-<div class="content" *ngIf="isDataLoaded">
+<div class="content" >
   <div class="block" *ngFor="let i of petIndexes">
     hhaa {{pets[i].petId}}
       <div class=" alert alert-danger" *ngFor="let request of requests[i]">

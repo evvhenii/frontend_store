@@ -16,6 +16,7 @@ export class PetProfileComponent implements OnInit {
 
   userId: number;
   petId: number;
+  isDataLoaded = false;
   private subscription: Subscription;
   pet: Pet = {petId: 0,
   	          userId: 0,
@@ -52,6 +53,8 @@ export class PetProfileComponent implements OnInit {
 
   getPetById(petId: number): void {
     this.petService.getPetById(petId)
-    .subscribe(pet => this.pet = pet);
+    .subscribe(pet => {this.pet = pet;
+                       this.isDataLoaded = true;
+                       console.log(this.isDataLoaded)});
   }
 }
