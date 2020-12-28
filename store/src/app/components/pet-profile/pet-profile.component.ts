@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Pet } from '../../../models/pet';
+import { PetPictureRequest } from '../../../models/pet-picture-request';
 import { PetService } from '../../services/pet/pet.service';
+import { ImageService } from '../../services/image/image.service';
 import { TokenStorageService } from '../../services/token-storage/token-storage.service';
 
 @Component({
@@ -13,10 +15,14 @@ import { TokenStorageService } from '../../services/token-storage/token-storage.
   styleUrls: ['./pet-profile.component.css']
 })
 export class PetProfileComponent implements OnInit {
-
+  petPictureRequest: PetPictureRequest = {url:'', petId:null};
   userId: number;
   petId: number;
   isDataLoaded = false;
+  showLoadNewPicture = false;
+  isSuccessful = false;
+  errorMessage = '';
+  isFailed = false;
   private subscription: Subscription;
   pet: Pet = {petId: 0,
   	          userId: 0,
@@ -28,6 +34,7 @@ export class PetProfileComponent implements OnInit {
               imageUrl: ''};
 
   constructor(private petService: PetService,
+              private imageService: ImageService,
   	          private tokenStorageService: TokenStorageService,
   	          private activateRoute: ActivatedRoute,
   	          private router: Router) { 
@@ -37,6 +44,13 @@ export class PetProfileComponent implements OnInit {
   ngOnInit(): void {
   	this.getPetById(this.petId);
   	this.userId = this.tokenStorageService.getUserIdFromToken();
+  }
+
+  showLoadNewPictureBlock(): void{
+    this.showLoadNewPicture = true;
+    this.isSuccessful = false;
+    this.isFailed = false;
+    this.petPictureRequest.url = '';
   }
 
   public deletePet():void{
@@ -56,5 +70,22 @@ export class PetProfileComponent implements OnInit {
     .subscribe(pet => {this.pet = pet;
                        this.isDataLoaded = true;
                        console.log(this.isDataLoaded)});
+  }
+
+  onSubmit(): void {
+    this.petPictureRequest.petId = this.petId;
+    let data = [];
+    data[0] = this.petPictureRequest;
+    this.imageService.create(data).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isFailed = true;
+      }
+    );
   }
 }

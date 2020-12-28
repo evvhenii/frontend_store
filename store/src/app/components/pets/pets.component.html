@@ -1,6 +1,18 @@
 <h1>Pets:</h1>
-<div class="content">
-  <div class="block" *ngFor="let pet of pets">
-    <a class="nav-link" [routerLink]="['/pets/', pet.petId]">{{pet.name}}</a>
+<div class="card-wrapper">
+  <div class="card" *ngFor="let pet of pets">
+      <div class="image-wrapper">
+        <img class="dog-image" src="{{pet.imageUrl}}" />
+      </div>
+      <div class="text">
+        <a class="nav-link" [routerLink]="['/pets/', pet.petId]">{{pet.name}}</a>
+      </div>
+      <div class="text">
+        {{pet.category}}
+      </div>
+      <div class="text">
+        {{pet.gender}}
+      </div>
   </div>
+ 
 </div>
