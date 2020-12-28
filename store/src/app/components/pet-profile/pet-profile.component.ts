@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { Pet } from '../../../models/pet';
 import { PetService } from '../../services/pet/pet.service';
@@ -17,7 +17,7 @@ export class PetProfileComponent implements OnInit {
 
   userId: number;
   petId: number;
-  //showDeleteButton: boolean = false;
+  private subscription: Subscription;
   pet: Pet = {petId: 0,
   	          userId: 0,
   	          daysAfterAdding: 0,
@@ -26,7 +26,6 @@ export class PetProfileComponent implements OnInit {
               gender: '', 
               description: '', 
               imageUrl: ''};
-  private subscription: Subscription;
 
   constructor(private petService: PetService,
   	          private tokenStorageService: TokenStorageService,
@@ -41,12 +40,11 @@ export class PetProfileComponent implements OnInit {
   }
 
   public deletePet():void{
-  	console.log('hello');
     this.petService.deletePet(this.petId).subscribe(() => this.redirectToMyPets());
   }
 
   redirectToCreateRequest(): void{
-    this.router.navigate(['/create_request']);
+    this.router.navigate(['pets/' + this.pet.petId + '/new_request']);
   }
 
   redirectToMyPets(): void{

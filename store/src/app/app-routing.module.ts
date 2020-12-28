@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'pets', component: PetsComponent },
   { path: 'pets/:petId', component: PetProfileComponent },
-  { path: 'my_pets', component: RequestCreationComponent, canActivate: [AuthGuard] },
-  { path: 'create_request', component: MyPetsComponent, canActivate: [AuthGuard] },
+  { path: 'pets/:petId/new_request', component: RequestCreationComponent, canActivate: [AuthGuard] },
+  { path: 'my_pets', component: MyPetsComponent, canActivate: [AuthGuard] },
   { path: 'requested_pets', component: RequestedPetsComponent, canActivate: [AuthGuard] },
   { path: 'add_pet', component: PetCreationComponent, canActivate: [AuthGuard]},
 ];

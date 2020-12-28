@@ -1,6 +1,12 @@
 <h1>My pets:</h1>
 <div class="content">
   <div class="block" *ngFor="let pet of pets">
-    {{pet.description}}
+    hhaa {{pet.petId}}
+    {{pet.request[0].message}}
+      <div class="block" *ngFor="let request of pet.request">
+      	<div>Hello</div> 
+    	<div>{{request.message}}</div>
+    	
+      </div>
   </div>
 </div>

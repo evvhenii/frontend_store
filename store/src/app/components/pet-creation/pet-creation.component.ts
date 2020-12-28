@@ -19,6 +19,7 @@ export class PetCreationComponent implements OnInit {
   API: string = apiPath;
   isSuccessful = false;
   errorMessage = '';
+  isFailed = false;
 
   constructor(private petService: PetService) { }
 
@@ -31,9 +32,11 @@ export class PetCreationComponent implements OnInit {
       data => {
         console.log(data);
         this.isSuccessful = true;
+        this.isFailed = false;
       },
       err => {
         this.errorMessage = err.error.message;
+        this.isFailed = true;
       }
     );
   }

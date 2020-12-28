@@ -7,37 +7,58 @@
       #f="ngForm"
       novalidate
     >
-
-
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="message">Message for owner</label>
         <input
-          type="text"
+          type="text"s
           class="form-control"
-          name="description"
-          [(ngModel)]="requestCreation.description"
+          name="message"
+          [(ngModel)]="requestCreation.message"
           required
           minlength="3"
-          maxlength="200"
-          #description="ngModel"
+          maxlength="250"
+          #message="ngModel"
         />
-        <div class="alert-danger" *ngIf="f.submitted && description.invalid">
-          <div *ngIf="description.errors.required">Description is required</div>
-          <div *ngIf="description.errors.minlength">
-            Description must be at least 3 characters
+        <div class="alert-danger" *ngIf="f.submitted && message.invalid">
+          <div *ngIf="message.errors.required">Description is required</div>
+          <div *ngIf="message.errors.minlength">
+            Message for owner must be at least 3 characters
           </div>
-          <div *ngIf="description.errors.maxlength">
-            Description must be at most 200 characters
+          <div *ngIf="message.errors.maxlength">
+            Message for owner must be at most 250 characters
           </div>
         </div>
       </div>
 
+
+      <div class="form-group">
+        <label for="contactInfo">Contact Information</label>
+        <input
+          type="text"s
+          class="form-control"
+          name="contactInfo"
+          [(ngModel)]="requestCreation.contactInfo"
+          required
+          minlength="3"
+          maxlength="250"
+          #contactInfo="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && contactInfo.invalid">
+          <div *ngIf="contactInfo.errors.required">Description is required</div>
+          <div *ngIf="contactInfo.errors.minlength">
+            Contact Information must be at least 3 characters
+          </div>
+          <div *ngIf="contactInfo.errors.maxlength">
+            Contact Information must be at most 250 characters
+          </div>
+        </div>
+      </div>
       
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Add</button>
+        <button class="btn btn-primary btn-block">Send request</button>
       </div>
 
-      <div class="alert alert-warning" *ngIf="f.submitted">
+      <div class="alert alert-warning" *ngIf="f.submitted && isFailed">
         Creation request is failed!<br />{{ errorMessage }}
       </div>
     </form>

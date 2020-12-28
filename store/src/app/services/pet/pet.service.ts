@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Pet } from '../../../models/pet';
 import { PetSummary } from '../../../models/pet-summary';
+import { PetWithRequests } from '../../../models/pet-with-requests';
 import { apiPath } from '../../../../globals';
 import { PetCreation } from '../../../models/pet-creation';
 
@@ -24,8 +25,12 @@ export class PetService {
   	return this.http.get<PetSummary[]>(this.API+"/findAll");
   }
 
-  public getMyPets(): Observable<Pet[]>{
-  	return this.http.get<Pet[]>(apiPath + "my_pets");
+  /*public getMyPets(): Observable<PetSummary[]>{
+  	return this.http.get<PetSummary[]>(apiPath + "my_pets");
+  }*/
+
+  public getMyPets(): Observable<PetWithRequests[]>{
+    return this.http.get<PetWithRequests[]>(apiPath + "my_pets");
   }
 
   public deletePet(petId: number){
@@ -36,8 +41,8 @@ export class PetService {
   	return this.http.get<Pet>(this.API + '/' + petId);
   }
 
-  public getRequestedPets(): Observable<Pet[]>{
-  	return this.http.get<Pet[]>(apiPath + "requested_pets");
+  public getRequestedPets(): Observable<PetSummary[]>{
+  	return this.http.get<PetSummary[]>(apiPath + "requested_pets");
   }
  
   public create(pet): Observable<PetCreation> {

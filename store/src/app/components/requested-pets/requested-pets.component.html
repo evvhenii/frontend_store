@@ -1,1 +1,12 @@
 <p>requested-pets works!</p>
+<div class="content">
+  <div class="block" *ngFor="let pet of [1,2,3,4]">
+    <br>
+    <!--<ng-template *ngIf="pet" (onCreate)="loadRequests(pet.petId) as requests">-->
+      <div class="block" *ngFor="let request of [1,2,3,4]">
+    	<div>{{pet}}{{request}}</div>
+    	
+      </div>
+    <!--</ng-template>-->
+  </div>
+</div>

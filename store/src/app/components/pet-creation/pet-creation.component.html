@@ -111,7 +111,7 @@
         <button class="btn btn-primary btn-block">Add</button>
       </div>
 
-      <div class="alert alert-warning" *ngIf="f.submitted">
+      <div class="alert alert-warning" *ngIf="f.submitted && isFailed">
         Signup failed!<br />{{ errorMessage }}
       </div>
     </form>
