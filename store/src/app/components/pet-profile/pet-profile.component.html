@@ -1,74 +1,91 @@
-<p>pet-profile works!</p>
-pet name {{pet.petId}}  value of 
-user id {{userId}}
-pet creator id {{pet.userId}}
-
-<div *ngIf="isDataLoaded">
-	helloo
-  <div *ngIf="pet.userId == userId; else requestBlock">
-	<button class="btn btn-danger btn-block alert alert-danger" (click)="deletePet()">
-  		Delete
-	</button>
-	<button class="btn btn-info btn-block alert alert-info" (click)="showLoadNewPictureBlock()">
-  		Add picture  
-	</button>
-
-	  <div class="col-md-12" *ngIf="showLoadNewPicture">
-  		<div class="card card-container">
-		    <form
-		      *ngIf="!isSuccessful"
-		      name="form"
-		      (ngSubmit)="f.form.valid && onSubmit()"
-		      #f="ngForm"
-		      novalidate
-		    >
+<h1>Pet</h1>
 
 
-      <div class="form-group">
-        <label for="url">ImageUrl</label>
-        <input
-          type="text"
-          class="form-control"
-          name="url"
-          [(ngModel)]="petPictureRequest.url"
-          required
-          minlength="3"
-          maxlength="2000"
-          #url="ngModel"
-        />
+<div class="card-wrapper-pet">
+  <div class="card image-wrapper">
+    <img class="image" src="{{pet.imageUrl}}" />
+  </div>
+
+
+  <div class="card">
+    <div class="text">Name {{pet.name}}</div>
+    <div class="text">Category {{pet.category}}</div>
+    <div class="text">Description {{pet.description}}</div>
+    <div class="text">Gender {{pet.gender}}</div>
+    <div class="text">Added {{pet.daysAfterAdding}} days ago.</div>
+  </div>
+
+  <div class="card" *ngIf="isDataLoaded">
+    <div class="wrapper" *ngIf="pet.userId == userId; else requestBlock">
+      <button class="btn btn-danger btn-block alert alert-danger" (click)="deletePet()">
+        Delete
+      </button>
+      <button class="btn btn-info btn-block alert alert-info" (click)="showLoadNewPictureBlock()">
+        Add picture  
+      </button>
+
+      <div class="col-md-12" *ngIf="showLoadNewPicture">
+        <div>
+          <form
+            *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="url">ImageUrl</label>
+              <input
+                type="text"
+                class="form-control"
+                name="url"
+                [(ngModel)]="petPictureRequest.url"
+                required
+                minlength="3"
+                maxlength="2000"
+                #url="ngModel"
+              />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary btn-block">Add</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isFailed">
+              Adding picture failed!<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            Your picture was successfully created!
+          </div>
+        </div>
       </div>
-
-      
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Add</button>
-      </div>
-
-      <div class="alert alert-warning" *ngIf="f.submitted && isFailed">
-        Adding picture failed!<br />{{ errorMessage }}
-      </div>
-    </form>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your picture was successfully created!
     </div>
-  </div>
+
+    <ng-template #requestBlock >
+      <p>You're able to make a request!</p>
+      <button (click)="redirectToCreateRequest()" class="btn btn-success btn-block alert alert-success">
+        Request
+      </button>
+    </ng-template>
+  </div>  
 </div>
 
-
-
-
-
+<h1>Pet's Pictures</h1>
+<div class="card-wrapper-pet ">
+  <div class="card image-wrapper" *ngFor="let petPicture of petPictures">
+      <img class="image" src="{{petPicture.url}}" />
   </div>
-	<ng-template #requestBlock >
-  		<button (click)="redirectToCreateRequest()" class="btn btn-success btn-block alert alert-success">
-  			Request
-  		</button>
-  	</ng-template>
-
 </div>
-
-
-
-<div>LALALLALLLAALLALAL</div>
-<div> {{userProfile.name}}</div>
-<div *ngFor="let petPicture of petPictures">{{petPicture.url}}</div>
+<h1>Owner's Profile</h1>
+<div class="card-wrapper-pet">
+  <div class="card image-wrapper">
+      <img class="image" src="{{userProfile.imageUrl}}" />
+  </div>
+  <div class="card">
+    <div class="text">Name {{userProfile.name}}</div>
+    <div class="text">Surname {{userProfile.surname}}</div>
+    <div class="text">Gender {{userProfile.gender}}</div>
+    <div class="text">Age {{userProfile.age}} years</div>
+  </div>
+</div>

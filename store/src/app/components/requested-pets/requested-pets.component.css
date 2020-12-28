@@ -1,0 +1,39 @@
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  width: 22%;
+  min-width: 300px;
+  height: 350px;
+  background: red;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 0.25rem;
+  background-color: rgba(229, 231, 235, 1);
+  overflow: auto;
+}
+
+.dog-image {
+  width: 250px;
+  height: 200px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.text {
+  word-break: break-word;
+  margin-left: 12px
+}
+
+a{
+  padding: 0;
+}

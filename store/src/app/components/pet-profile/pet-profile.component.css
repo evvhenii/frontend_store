@@ -1,25 +1,23 @@
-.card-wrapper {
+.card-wrapper-pet {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
 }
 
 .card {
-  width: 22%;
+  width: 32%;
   min-width: 300px;
-  height: 350px;
-  background: red;
+  height: 300px;
   padding: 10px;
   margin: 10px auto;
   border-radius: 0.25rem;
-  background-color: rgba(229, 231, 235, 1);
+  background-color: #fafafa;
   overflow: auto;
 }
 
-.dog-image {
-  width: 250px;
-  height: 200px;
+.image {
+  width: 270px;
+  height: 270px;
 }
 
 .image-wrapper {
@@ -29,6 +27,10 @@
   margin-bottom: 10px;
 }
 
+.wrapper{
+  width: 100%;
+}
+
 .text {
   word-break: break-word;
   margin-left: 12px
@@ -36,4 +38,13 @@
 
 a{
   padding: 0;
+}
+
+h1{
+  text-align: center;
+}
+
+button {
+  margin: auto;
+  width: 90%;
 }

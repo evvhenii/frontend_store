@@ -1,12 +1,18 @@
-<p>requested-pets works!</p>
-<div class="content">
-  <div class="block" *ngFor="let pet of [1,2,3,4]">
-    <br>
-    <!--<ng-template *ngIf="pet" (onCreate)="loadRequests(pet.petId) as requests">-->
-      <div class="block" *ngFor="let request of [1,2,3,4]">
-    	<div>{{pet}}{{request}}</div>
-    	
+<h1>Requested pets:</h1>
+<div class="card-wrapper">
+  <div class="card" *ngFor="let pet of pets">
+      <div class="image-wrapper">
+        <img class="dog-image" src="{{pet.imageUrl}}" />
       </div>
-    <!--</ng-template>-->
+      <div class="text">
+        <a class="nav-link" [routerLink]="['/pets/', pet.petId]">{{pet.name}}</a>
+      </div>
+      <div class="text">
+        {{pet.category}}
+      </div>
+      <div class="text">
+        {{pet.gender}}
+      </div>
   </div>
+ 
 </div>
