@@ -1,9 +1,8 @@
 <h1>My pets:</h1>
-<div class="content">
-  <div class="block" *ngFor="let pet of pets">
-    hhaa {{pet.petId}}
-    {{pet.request[0].message}}
-      <div class="block" *ngFor="let request of pet.request">
+<div class="content" *ngIf="isDataLoaded">
+  <div class="block" *ngFor="let i of petIndexes">
+    hhaa {{pets[i].petId}}
+      <div class=" alert alert-danger" *ngFor="let request of requests[i]">
       	<div>Hello</div> 
     	<div>{{request.message}}</div>
     	

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Pet } from '../../../models/pet';
 import { PetSummary } from '../../../models/pet-summary';
-import { PetWithRequests } from '../../../models/pet-with-requests';
 import { apiPath } from '../../../../globals';
 import { PetCreation } from '../../../models/pet-creation';
 
@@ -25,13 +24,13 @@ export class PetService {
   	return this.http.get<PetSummary[]>(this.API+"/findAll");
   }
 
-  /*public getMyPets(): Observable<PetSummary[]>{
-  	return this.http.get<PetSummary[]>(apiPath + "my_pets");
-  }*/
-
-  public getMyPets(): Observable<PetWithRequests[]>{
-    return this.http.get<PetWithRequests[]>(apiPath + "my_pets");
+  public getMyPets(): Promise<PetSummary[]>{
+  	return this.http.get<PetSummary[]>(apiPath + "my_pets").toPromise();
   }
+
+  /*public getMyPets(): Observable<PetWithRequests[]>{
+    return this.http.get<PetWithRequests[]>(apiPath + "my_pets");
+  }*/
 
   public deletePet(petId: number){
   	return this.http.delete(this.API + '/' + petId);

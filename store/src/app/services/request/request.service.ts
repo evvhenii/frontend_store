@@ -25,7 +25,11 @@ export class RequestService {
     return this.http.post<RequestCreation>(this.API + petId + '/new_request', request, httpOptions);
   }
 
-  public getRequestsByPetId(petId: number): Observable<InputRequest[]>{
-  	return this.http.get<InputRequest[]>(this.API + petId + '/requests');
+  public getRequestsByPetId(petId: number): Promise<InputRequest[]>{
+  	return this.http.get<InputRequest[]>(this.API + petId + '/requests').toPromise();
   }
+
+  /*public getRequestsByPetId(petId: number): Observable<InputRequest[]>{
+  	return this.http.get<InputRequest[]>(this.API + petId + '/requests');
+  }*/
 }

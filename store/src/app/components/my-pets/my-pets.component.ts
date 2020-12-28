@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 
 import { PetService } from '../../services/pet/pet.service';
 import { RequestService } from '../../services/request/request.service';
-//import { PetSummary } from '../../../models/pet-summary';
-import { PetWithRequests } from '../../../models/pet-with-requests';
+import { PetSummary } from '../../../models/pet-summary';
+//import { PetWithRequests } from '../../../models/pet-with-requests';
 
 import { InputRequest } from '../../../models/input-request';
 
@@ -15,24 +15,45 @@ import { InputRequest } from '../../../models/input-request';
 })
 export class MyPetsComponent implements OnInit {
 
-  //pets: PetSummary[];
-  pets: PetWithRequests[];
-  //requests: InputRequest[][];
+  isDataLoaded: boolean = false;
+  pets: PetSummary[];
+  requests = [];//: InputRequest[];
+  petIndexes = [];
 
   constructor(private petService: PetService,
               private requestService: RequestService) { }
 
   ngOnInit(): void {
-  	this.getMyPets();
+  	this.getMyPetsAndRequests();
   }
 
-  getMyPets(): void {
-    this.petService.getMyPets()
-    .subscribe(pets => {this.pets = pets;
-                        this.loadRequests()});
+  async getMyPetsAndRequests() {
+    this.pets = await this.petService.getMyPets();
+    for(let i = 0; i < this.pets.length; i++){
+      this.requests[i] = [];
+      let reqs = await this.requestService.getRequestsByPetId(this.pets[i].petId);
+      for(let j = 0; j < reqs.length; j++){
+        this.requests[i][j] = reqs[j];
+      }
+      console.log('loaded ' + this.pets[i].petId);
+      this.petIndexes[i] = i;
+    }
+    for(let i in this.petIndexes){
+      console.log(i);
+    }
+    this.isDataLoaded = true;
   }
-
-  loadRequests(): void {
+ 
+  /*loadRequests(petId: number): InputRequest[] {
+    console.log('Hello');
+    console.log("Pet ID  "+petId)
+    let requests: InputRequest[];
+    this.requestService.getRequestsByPetId(petId)
+                       .subscribe(pets => requests = pets);
+    console.log('I got' + requests);
+    return requests;
+  }*/
+  /*loadRequests(): void {
     console.log('im here');
     for(let i = 0; i < this.pets.length; i++){
       console.log(this.pets[i].petId);
@@ -51,5 +72,5 @@ export class MyPetsComponent implements OnInit {
     //this.requestService.getRequestsByPetId(petId)
     //                   .subscribe(pets => requests = pets);
     //return requests;
-  }
+  }*/
 }

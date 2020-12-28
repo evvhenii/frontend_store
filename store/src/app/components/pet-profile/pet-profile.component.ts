@@ -7,7 +7,6 @@ import { Pet } from '../../../models/pet';
 import { PetService } from '../../services/pet/pet.service';
 import { TokenStorageService } from '../../services/token-storage/token-storage.service';
 
-
 @Component({
   selector: 'app-pet-profile',
   templateUrl: './pet-profile.component.html',
